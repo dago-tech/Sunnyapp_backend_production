@@ -1,5 +1,6 @@
 from pathlib import Path
 from datetime import timedelta
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -12,9 +13,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-d$azdnw%9@h1c%2tihp_n$%wla57$ttj_bu!7yu#m)bd)zy5d='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -69,15 +70,21 @@ WSGI_APPLICATION = 'sunny_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 # Configuración de parametros de base de datos
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'sunnyapp',
+#         'USER': 'postgres',
+#         'PASSWORD': 'maquina123', # Postgres password
+#         'HOST': '127.0.0.1',
+#         'DATABASE_PORT': '5432',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sunnyapp',
-        'USER': 'postgres',
-        'PASSWORD': 'maquina123', # Postgres password
-        'HOST': '127.0.0.1',
-        'DATABASE_PORT': '5432',
-    }
+    'default': dj_database_url.parse(
+        'postgres://danielg:966blVwoukPseW1sgUKZh4SbyyMOJ17T@dpg-cmkurvqcn0vc739ksq00-a.oregon-postgres.render.com/sunnyapp'
+        )
 }
 
 
